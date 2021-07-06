@@ -15,7 +15,8 @@ let userTest: User;
 describe('Get Statement Operation Controller', () => {
 
   beforeAll(async () => {
-    connection = await createConnection('localhost', true);
+    //connection = await createConnection('localhost', true);
+    connection = await createConnection( true);
     await connection.runMigrations();
     const id = uuidV4();
 

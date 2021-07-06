@@ -12,6 +12,7 @@ let user: User;
 enum OperationType {
   DEPOSIT = 'deposit',
   WITHDRAW = 'withdraw',
+  TRANSFER = 'transfer',
 }
 
 describe('Create Statement', ()=>{
@@ -30,6 +31,7 @@ describe('Create Statement', ()=>{
   it('should be able to create a new deposit', async ()=>{
     const statement = await createStatementUseCase.execute( {
       user_id: user.id,
+      sender_id: user.id,
       type: `deposit` as OperationType,
       amount: 100,
       description: 'deposit 100 test'
@@ -42,6 +44,7 @@ describe('Create Statement', ()=>{
     await expect(async ()=> {
       await createStatementUseCase.execute({
         user_id: 'noexistentuser',
+        sender_id: 'noexistentuser',
         type: `deposit` as OperationType,
         amount: 100,
         description: 'deposit 100 test'
@@ -53,6 +56,7 @@ describe('Create Statement', ()=>{
 
     await createStatementUseCase.execute( {
       user_id: user.id,
+      sender_id: user.id,
       type: `deposit` as OperationType,
       amount: 100,
       description: 'deposit 100 test'
@@ -60,6 +64,7 @@ describe('Create Statement', ()=>{
 
     const statement =  await createStatementUseCase.execute( {
       user_id: user.id,
+      sender_id: user.id,
       type: `withdraw` as OperationType,
       amount: 90,
       description: 'deposit 100 test'
@@ -72,6 +77,7 @@ describe('Create Statement', ()=>{
     await expect(async () => {
       await createStatementUseCase.execute( {
         user_id: user.id,
+        sender_id: user.id,
         type: `withdraw` as OperationType,
         amount: 90,
         description: 'deposit 100 test'

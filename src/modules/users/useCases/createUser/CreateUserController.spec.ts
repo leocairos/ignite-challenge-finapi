@@ -12,7 +12,8 @@ let userTestIdEmail: string;
 describe('Create User Controller', () => {
 
   beforeAll(async () => {
-    connection = await createConnection('localhost', true);
+    //connection = await createConnection('localhost', true);
+    connection = await createConnection( true);
     await connection.runMigrations();
 
     userTestIdEmail = uuidV4();

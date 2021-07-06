@@ -12,6 +12,7 @@ let user: User;
 enum OperationType {
   DEPOSIT = 'deposit',
   WITHDRAW = 'withdraw',
+  TRANSFER = 'transfer',
 }
 
 describe('Get Statement Operation', () => {
@@ -31,6 +32,7 @@ describe('Get Statement Operation', () => {
   it('should be able to get a statement operation', async () => {
     const statement = await inMemoryStatementsRepository.create( {
       user_id: user.id,
+      sender_id: user.id,
       type: `deposit` as OperationType,
       amount: 100,
       description: 'deposit 100 test'
@@ -48,6 +50,7 @@ describe('Get Statement Operation', () => {
     await expect(async () => {
       const statement = await inMemoryStatementsRepository.create( {
         user_id: user.id,
+        sender_id: user.id,
         type: `deposit` as OperationType,
         amount: 100,
         description: 'deposit 100 test'
